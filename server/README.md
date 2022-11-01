@@ -25,5 +25,5 @@ npm i prisma-erd-generator @mermaid-js/mermaid-cli -D
 ## Gerar diagrama Entidade Relacionamento
 
 ```
-npx prisma-erd-generator
+npx prisma-generate
 ```
