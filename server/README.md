@@ -15,3 +15,15 @@ npx prisma migrate dev
 ```
 npx prisma studio
 ```
+
+## NPM extensoes para gerar diagramas Entidade Relacionamento
+
+```
+npm i prisma-erd-generator @mermaid-js/mermaid-cli -D
+```
+
+## Gerar diagrama Entidade Relacionamento
+
+```
+npx prisma-erd-generator
+```
