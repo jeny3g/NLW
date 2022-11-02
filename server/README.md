@@ -27,3 +27,9 @@ npm i prisma-erd-generator @mermaid-js/mermaid-cli -D
 ```
 npx prisma-generate
 ```
+
+## Rodar seed
+
+```
+npx prisma db seed --preview-feature
+```
