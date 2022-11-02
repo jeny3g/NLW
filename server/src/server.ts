@@ -17,6 +17,18 @@ async function bootstrap() {
     origin: true,
   });
 
+  app.get("/users/count", async () => {
+    const count = await prisma.user.count();
+
+    return { count };
+  });
+
+  app.get("/guesses/count", async () => {
+    const count = await prisma.guess.count();
+
+    return { count };
+  });
+
   app.get("/pools/count", async () => {
     const count = await prisma.pool.count();
 
