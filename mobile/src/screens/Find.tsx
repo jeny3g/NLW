@@ -1,7 +1,7 @@
 import { Heading, VStack } from "native-base";
-import { Button } from "../src/components/Button/Button";
-import { Header } from "../src/components/Header/Header";
-import { Input } from "../src/components/Input/Input";
+import { Button } from "../components/Button/Button";
+import { Header } from "../components/Header/Header";
+import { Input } from "../components/Input/Input";
 
 export function Find() {
   return (

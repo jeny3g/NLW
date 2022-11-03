@@ -9,7 +9,7 @@ import {
 import { THEME } from "./src/styles/theme";
 import { AuthContextProvider } from "./contexts/AuthContext";
 import { Loading } from "./src/components/Loading";
-import { SignIn } from "./screens/SignIn";
+import { SignIn } from "./src/screens/SignIn";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
