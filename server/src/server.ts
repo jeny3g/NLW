@@ -1,12 +1,12 @@
-import { PrismaClient } from "@prisma/client";
-import cors from "@fastify/cors";
 import Fastify from "fastify";
-import { z } from "zod";
-import ShortUniqueId from "short-unique-id";
+import cors from "@fastify/cors";
+import jwt from "@fastify/jwt";
 
-const prisma = new PrismaClient({
-  log: ["query"],
-});
+import { poolRoutes } from "./routes/pool";
+import { authRoutes } from "./routes/auth";
+import { gameRoutes } from "./routes/game";
+import { guessRoutes } from "./routes/guess";
+import { userRoutes } from "./routes/user";
 
 async function bootstrap() {
   const app = Fastify({
@@ -17,44 +17,17 @@ async function bootstrap() {
     origin: true,
   });
 
-  app.get("/users/count", async () => {
-    const count = await prisma.user.count();
-
-    return { count };
+  await app.register(jwt, {
+    secret: "nlwcopa", // Em producao, usar variavel de ambiente
   });
 
-  app.get("/guesses/count", async () => {
-    const count = await prisma.guess.count();
+  await app.register(poolRoutes);
+  await app.register(authRoutes);
+  await app.register(gameRoutes);
+  await app.register(guessRoutes);
+  await app.register(userRoutes);
 
-    return { count };
-  });
-
-  app.get("/pools/count", async () => {
-    const count = await prisma.pool.count();
-
-    return { count };
-  });
-
-  app.post("/pools", async (request, reply) => {
-    const createPoolBody = z.object({
-      title: z.string(),
-    });
-
-    const { title } = createPoolBody.parse(request.body);
-
-    const generate = new ShortUniqueId({ length: 6 });
-    const code = String(generate()).toUpperCase();
-
-    await prisma.pool.create({
-      data: {
-        title,
-        code,
-      },
-    });
-
-    return reply.status(201).send({ code });
-  });
-
+  await app.listen({ port: 3333, host: "0.0.0.0" });
   await app.listen({ port: 3333, host: "0.0.0.0" });
 }
 
