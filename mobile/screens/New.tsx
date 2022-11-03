@@ -1,9 +1,9 @@
 import { Heading, Text, VStack } from "native-base";
 
 import Logo from "../assets/logo.svg";
-import { Button } from "../components/Button/Button";
-import { Header } from "../components/Header/Header";
-import { Input } from "../components/Input/Input";
+import { Button } from "../src/components/Button/Button";
+import { Header } from "../src/components/Header/Header";
+import { Input } from "../src/components/Input/Input";
 
 export function New() {
   return (

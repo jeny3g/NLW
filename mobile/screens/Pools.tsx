@@ -1,7 +1,7 @@
 import { VStack, Icon } from "native-base";
 import { Octicons } from "@expo/vector-icons";
-import { Header } from "../components/Header/Header";
-import { Button } from "../components/Button/Button";
+import { Header } from "../src/components/Header/Header";
+import { Button } from "../src/components/Button/Button";
 
 export function Pools() {
   return (
