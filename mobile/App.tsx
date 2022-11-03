@@ -1,5 +1,4 @@
-import { StatusBar, StyleSheet } from "react-native";
-import { NativeBaseProvider } from "native-base";
+import { NativeBaseProvider, StatusBar } from "native-base";
 import {
   useFonts,
   Roboto_400Regular,
@@ -8,8 +7,9 @@ import {
 } from "@expo-google-fonts/roboto";
 
 import { THEME } from "./src/styles/theme";
+import { AuthContextProvider } from "./contexts/AuthContext";
+import { Pools } from "./screens/Pools";
 import { Loading } from "./components/Loading";
-import { SignIn } from "./screens/SignIn";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -20,21 +20,14 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={THEME}>
-      <StatusBar
-        barStyle="light-content"
-        backgroundColor="transparent"
-        translucent
-      />
-      {fontsLoaded ? <SignIn /> : <Loading />}
+      <AuthContextProvider>
+        <StatusBar
+          barStyle="light-content"
+          backgroundColor="transparent"
+          translucent
+        />
+        {fontsLoaded ? <Pools /> : <Loading />}
+      </AuthContextProvider>
     </NativeBaseProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
